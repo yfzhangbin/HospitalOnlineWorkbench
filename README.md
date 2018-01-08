@@ -8,3 +8,7 @@ hospital online workbench
 3、医生查询所属科室挂号情况，对病人进行叫号
 4、医生对病人情况进行检查或通知其进行相关检查
 5、医生根据检测结果，对病情分析，出具诊断证明
+
+参考：
+https://danielniko.wordpress.com/2012/04/17/simple-crud-using-jsp-servlet-and-mysql/
+http://www.codejava.net/coding/jsp-servlet-jdbc-mysql-create-read-update-delete-crud-example
