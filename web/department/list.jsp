@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-    <title>显示全部科室</title>
+    <title>科室信息列表</title>
 </head>
 <body>
     <table border=1>
@@ -34,6 +34,6 @@
         </c:forEach>
         </tbody>
     </table>
-    <p><a href="DepartmentController?action=insert">新增科室</a></p>
+    <p><a href="DepartmentController?action=insert">添加科室</a></p>
 </body>
 </html>

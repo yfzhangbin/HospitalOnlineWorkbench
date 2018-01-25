@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-    <title>新增科室</title>
+    <title>添加科室信息</title>
 </head>
 <body>
     <form method="POST" action='DepartmentController' name="frmAddDep">
