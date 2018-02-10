@@ -39,4 +39,14 @@
         <servlet-name>DoctorController</servlet-name>
         <url-pattern>/DoctorController</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PatientController</servlet-name>
+        <servlet-class>controller.PatientController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PatientController</servlet-name>
+        <url-pattern>/PatientController</url-pattern>
+    </servlet-mapping>
+
 </web-app>

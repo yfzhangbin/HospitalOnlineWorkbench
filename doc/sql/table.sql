@@ -42,6 +42,7 @@ create table if not exists patient (
 -- 检查信息
 create table if not exists examination (
 	id int auto_increment comment '编号',
+	department_id int comment '科室编号',
 	doctor_id int comment '医生编号',
 	patient_id int comment '病人编号',
 	result varchar(200) comment '检查结果',
@@ -53,6 +54,7 @@ create table if not exists examination (
 -- 诊断信息
 create table if not exists diagnosis (
 	id int auto_increment comment '编号',
+	department_id int comment '科室编号',
 	doctor_id int comment '医生编号',
 	patient_id int comment '病人编号',
 	result varchar(200) comment '诊断结果',
