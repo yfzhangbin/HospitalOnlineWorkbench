@@ -8,5 +8,6 @@
     <a href="/DepartmentController?action=list">科室管理</a>
     <a href="/DoctorController?action=list">医生管理</a>
     <a href="/PatientController?action=list">患者管理</a>
+    <a href="/RegistrationController?action=list">就诊管理</a>
   </body>
 </html>
