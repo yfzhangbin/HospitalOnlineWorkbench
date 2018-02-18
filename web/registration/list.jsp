@@ -14,7 +14,9 @@
         <tr>
             <th>编号</th>
             <th>病人编号</th>
+            <th>病人姓名</th>
             <th>科室编号</th>
+            <th>科室名称</th>
             <th>检查编号</th>
             <th>诊断编号</th>
             <th>类型</th>
@@ -28,7 +30,9 @@
             <tr>
                 <td><c:out value="${item.id}" /></td>
                 <td><c:out value="${item.patientId}" /></td>
+                <td><c:out value="${item.patientName}" /></td>
                 <td><c:out value="${item.departmentId}" /></td>
+                <td><c:out value="${item.departmentName}" /></td>
                 <td><c:out value="${item.examinationId}" /></td>
                 <td><c:out value="${item.diagnosisId}" /></td>
                 <td><c:out value="${item.status}" /></td>

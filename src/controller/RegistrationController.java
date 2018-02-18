@@ -1,5 +1,6 @@
 package controller;
 
+import dao.DepartmentDao;
 import dao.RegistrationDao;
 import model.Registration;
 import util.DateUtil;
@@ -20,10 +21,12 @@ public class RegistrationController extends HttpServlet {
     private static String FINAL = "/registration/final.jsp";
     private static String LIST = "/registration/list.jsp";
     private RegistrationDao dao;
+    private DepartmentDao departmentDao;
 
     public RegistrationController() {
         super();
         dao = new RegistrationDao();
+        departmentDao = new DepartmentDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,6 +52,7 @@ public class RegistrationController extends HttpServlet {
             request.setAttribute("list", dao.getAll(null));
         } else {
             forward = ADD;
+            request.setAttribute("departments", departmentDao.getAll());
         }
         RequestDispatcher view = request.getRequestDispatcher(forward);
         view.forward(request, response);

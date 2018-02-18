@@ -8,7 +8,9 @@ import java.sql.Date;
 public class Registration {
     private int id; // 编号
     private int patientId; // 病人编号
+    private String patientName; // 病人姓名
     private int departmentId; // 科室编号
+    private String departmentName; // 科室名称
     private int examinationId; // 检查编号
     private int diagnosisId; // 诊断编号
     private String status; // 就医状态：挂号、检查、诊断
@@ -79,12 +81,30 @@ public class Registration {
         this.updatetime = updatetime;
     }
 
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
     @Override
     public String toString() {
         return "Registration{" +
                 "id=" + id +
                 ", patientId=" + patientId +
+                ", patientName='" + patientName + '\'' +
                 ", departmentId=" + departmentId +
+                ", departmentName='" + departmentName + '\'' +
                 ", examinationId=" + examinationId +
                 ", diagnosisId=" + diagnosisId +
                 ", status='" + status + '\'' +

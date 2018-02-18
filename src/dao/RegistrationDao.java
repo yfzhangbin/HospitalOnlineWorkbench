@@ -87,17 +87,19 @@ public class RegistrationDao {
             if (connection != null) {
                 PreparedStatement preparedStatement;
                 if (status != null) {
-                    preparedStatement = connection.prepareStatement("select * from registration where status=?");
+                    preparedStatement = connection.prepareStatement("select a.*, b.name as patient_name, c.name as department_name from registration a, patient b, department c where a.patient_id = b.id and a.department_id = c.id and status=?");
                     preparedStatement.setString(1, status);
                 } else {
-                    preparedStatement = connection.prepareStatement("select * from registration");
+                    preparedStatement = connection.prepareStatement("select a.*, b.name as patient_name, c.name as department_name from registration a, patient b, department c where a.patient_id = b.id and a.department_id = c.id");
                 }
                 ResultSet rs = preparedStatement.executeQuery();
                 while (rs.next()) {
                     Registration doc = new Registration();
                     doc.setId(rs.getInt("id"));
                     doc.setPatientId(rs.getInt("patient_id"));
+                    doc.setPatientName(rs.getString("patient_name"));
                     doc.setDepartmentId(rs.getInt("department_id"));
+                    doc.setDepartmentName(rs.getString("department_name"));
                     doc.setExaminationId(rs.getInt("examination_id"));
                     doc.setDiagnosisId(rs.getInt("diagnosis_id"));
                     doc.setStatus(rs.getString("status"));
@@ -123,13 +125,15 @@ public class RegistrationDao {
         Connection connection = DbUtil.getConnection();
         Registration doc = new Registration();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from registration where id=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("select a.*, b.name as patient_name, c.name as department_name from registration a, patient b, department c where a.id=? and a.patient_id = b.id and a.department_id = c.id");
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 doc.setId(rs.getInt("id"));
                 doc.setPatientId(rs.getInt("patient_id"));
+                doc.setPatientName(rs.getString("patient_name"));
                 doc.setDepartmentId(rs.getInt("department_id"));
+                doc.setDepartmentName(rs.getString("department_name"));
                 doc.setExaminationId(rs.getInt("examination_id"));
                 doc.setDiagnosisId(rs.getInt("diagnosis_id"));
                 doc.setStatus(rs.getString("status"));
