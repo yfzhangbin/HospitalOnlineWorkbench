@@ -20,13 +20,15 @@ public class PatientDao {
         Connection connection = DbUtil.getConnection();
         try {
             if (connection != null) {
-                PreparedStatement preparedStatement = connection.prepareStatement("insert into patient (name, sex, birthday, phone, createtime, updatetime) values (?, ?, ?, ?, ?, ?)");
+                PreparedStatement preparedStatement = connection.prepareStatement("insert into patient (name, sex, birthday, phone, createtime, updatetime, email, password) values (?, ?, ?, ?, ?, ?, ?, ?)");
                 preparedStatement.setString(1, patient.getName());
                 preparedStatement.setString(2, patient.getSex());
                 preparedStatement.setDate(3, patient.getBirthday());
                 preparedStatement.setString(4, patient.getPhone());
                 preparedStatement.setDate(5, new java.sql.Date(new Date().getTime()));
                 preparedStatement.setDate(6, new java.sql.Date(new Date().getTime()));
+                preparedStatement.setString(7, patient.getEmail());
+                preparedStatement.setString(8, patient.getPassword());
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
@@ -63,13 +65,15 @@ public class PatientDao {
         Connection connection = DbUtil.getConnection();
         try {
             if (connection != null) {
-                PreparedStatement preparedStatement = connection.prepareStatement("update patient set name=?, sex=?, birthday=?, phone=?, updatetime=? where id=?");
+                PreparedStatement preparedStatement = connection.prepareStatement("update patient set name=?, sex=?, birthday=?, phone=?, updatetime=?, email=?, password=? where id=?");
                 preparedStatement.setString(1, patient.getName());
                 preparedStatement.setString(2, patient.getSex());
                 preparedStatement.setDate(3, patient.getBirthday());
                 preparedStatement.setString(4, patient.getPhone());
                 preparedStatement.setDate(5, new java.sql.Date(new Date().getTime()));
-                preparedStatement.setInt(6, patient.getId());
+                preparedStatement.setString(6, patient.getEmail());
+                preparedStatement.setString(7, patient.getPassword());
+                preparedStatement.setInt(8, patient.getId());
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
@@ -99,6 +103,8 @@ public class PatientDao {
                     doc.setPhone(rs.getString("phone"));
                     doc.setCreatetime(rs.getDate("createtime"));
                     doc.setUpdatetime(rs.getDate("updatetime"));
+                    doc.setEmail(rs.getString("email"));
+                    doc.setPassword(rs.getString("password"));
                     results.add(doc);
                 }
             }
@@ -130,6 +136,36 @@ public class PatientDao {
                 doc.setPhone(rs.getString("phone"));
                 doc.setCreatetime(rs.getDate("createtime"));
                 doc.setUpdatetime(rs.getDate("updatetime"));
+                doc.setEmail(rs.getString("email"));
+                doc.setPassword(rs.getString("password"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DbUtil.closeConnection(connection);
+        }
+        return doc;
+    }
+
+    public Patient getByEmailAndPassword(String email, String password) {
+        Connection connection = DbUtil.getConnection();
+        Patient doc = null;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from patient where email=? and password=?");
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, password);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                doc = new Patient();
+                doc.setId(rs.getInt("id"));
+                doc.setName(rs.getString("name"));
+                doc.setSex(rs.getString("sex"));
+                doc.setBirthday(rs.getDate("birthday"));
+                doc.setPhone(rs.getString("phone"));
+                doc.setCreatetime(rs.getDate("createtime"));
+                doc.setUpdatetime(rs.getDate("updatetime"));
+                doc.setEmail(rs.getString("email"));
+                doc.setPassword(rs.getString("password"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

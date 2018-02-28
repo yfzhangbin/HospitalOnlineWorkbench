@@ -34,6 +34,8 @@ create table if not exists patient (
 	sex varchar(10) comment '性别',
 	birthday datetime comment '出生年月日',
 	phone varchar(20) comment '电话号码',
+	email varchar(50) comment '电子邮箱-登录名',
+	password varchar(50) comment '密码',
 	createtime datetime default now() comment '创建时间',
 	updatetime datetime default now() comment '修改时间',
 	primary key (id)
@@ -76,3 +78,13 @@ create table if not exists registration (
 	primary key (id)
 );
 
+-- 预约挂号
+create table if not exists appointment (
+	id int auto_increment comment '编号',
+	patient_id int comment '病人编号',
+	department_id int comment '科室编号',
+	status varchar(20) comment '就医状态：挂号、检查、诊断',
+	createtime datetime default now() comment '挂号时间',
+	updatetime datetime default now() comment '修改时间',
+	primary key (id)
+);
